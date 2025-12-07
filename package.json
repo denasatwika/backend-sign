@@ -1,7 +1,9 @@
 {
   "name": "backend-sign",
+  "type": "module",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
+    "start": "bun run src/index.ts",
     "lint": "npx eslint src --ext .ts",
     "lint:fix": "npx eslint src --ext .ts --fix"
   },
