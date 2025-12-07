@@ -1,23 +1,35 @@
 {
   "name": "backend-sign",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "lint": "npx eslint src --ext .ts",
+    "lint:fix": "npx eslint src --ext .ts --fix"
   },
   "dependencies": {
-    "hono": "^4.10.7"
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.45.0",
+    "hono": "^4.10.7",
+    "pg": "^8.16.3",
+    "pino": "^10.1.0"
   },
   "devDependencies": {
     "@eslint/compat": "^2.0.0",
+    "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.1",
     "@types/bun": "latest",
+    "@types/multer": "^2.0.0",
+    "@types/pg": "^8.15.6",
     "@typescript-eslint/eslint-plugin": "^8.48.1",
     "@typescript-eslint/parser": "^8.48.1",
+    "drizzle-kit": "^0.31.8",
     "eslint": "^9.39.1",
     "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prettier": "^5.5.4",
+    "jiti": "^2.6.1",
     "prettier": "^3.7.4",
     "tsx": "^4.21.0",
     "typescript-eslint": "^8.48.1"

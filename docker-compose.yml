@@ -1,0 +1,44 @@
+services:
+  app:
+    build: . 
+    container_name: backend_sign
+    restart: always
+    ports:
+      - "3000:3000" 
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/app 
+      - /app/node_modules 
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    networks:
+      - app_network
+
+  db:
+    image: postgres:16-alpine 
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: honouser
+      POSTGRES_PASSWORD: honopass
+      POSTGRES_DB: honoapp
+    ports:
+      - "5432:5432" 
+    volumes:
+      - postgres-data:/var/lib/postgresql/data 
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s 
+
+volumes:
+  postgres-data:
+
+networks:
+  app_network:
