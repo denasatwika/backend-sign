@@ -4,7 +4,7 @@ import { eq, and, sql } from 'drizzle-orm';
 import jwt from 'jsonwebtoken';
 import type { Secret, SignOptions } from 'jsonwebtoken';
 import { randomBytes, randomUUID } from 'crypto';
-import { UnauthorizedError, ForbiddenError } from '../errors/index.ts';
+import { UnauthorizedError, ForbiddenError } from '../types/errors.ts';
 
 const NONCE_TIMEOUT_MINUTES = parseInt(process.env.NONCE_TIMEOUT_MINUTES || '5', 10);
 const JWT_SECRET: Secret = process.env.JWT_SECRET || randomBytes(32).toString('hex');
