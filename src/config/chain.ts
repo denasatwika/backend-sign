@@ -1,5 +1,5 @@
 import type { Address, Hex } from 'viem'
-import { getEnv } from './env'
+import { getEnv } from './env.ts'
 
 export type ChainConfig = {
   rpcUrl?: string

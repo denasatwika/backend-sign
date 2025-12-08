@@ -91,7 +91,7 @@ export async function verifyWalletSignature(
     });
 
     if (!walletRecord) {
-        throw new ForbiddenError('Wallet not registered or linked to any user.');
+        throw new ForbiddenError('Wallet not registered or linked to any employee account.');
     }
     
     const employeeRecord = await db.query.employees.findFirst({
@@ -103,7 +103,7 @@ export async function verifyWalletSignature(
     }
 
     const signOptions: SignOptions = { 
-        expiresIn: JWT_EXPIRES_IN 
+        expiresIn: JWT_EXPIRES_IN as any
     };
 
     const token = jwt.sign(
