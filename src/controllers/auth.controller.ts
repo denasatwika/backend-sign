@@ -1,5 +1,6 @@
 import { Context } from 'hono';
 import * as authService from '../services/auth.service.ts';
+import { setCookie } from 'hono/cookie';
 
 export const getNonce = async (c: Context) => {
     try {
@@ -30,15 +31,30 @@ export const verifyLogin = async (c: Context) => {
         }
 
         const result = await authService.verifyWalletSignature(address, nonce, signature);
-        
-        return c.json({ 
-            token: result.token,
-            employee: result.employee,
-            message: "Login successful" 
+
+        const isProduction = process.env.NODE_ENV === 'production';
+        const expireDate = new Date();
+        const maxAgeSeconds = 7 * 24 * 60 * 60; 
+
+        setCookie(c, 'access_token', result.token, {
+            httpOnly: true,
+            secure: isProduction,
+            sameSite: isProduction ? 'None' : 'Lax',
+            path: '/',
+            maxAge: maxAgeSeconds 
         });
+        
+        return c.json({
+            employee: result.employee,
+            message: "Login successul"
+        }, 200);
 
     } catch (e) {
         console.error("Verification error:", e);
-        return c.json({ error: (e as Error).message || "Login failed" }, 401);
+        const errorMessage = (e as Error).message;
+        if (errorMessage.includes('Wallet not linked')) {
+            return c.json({ error: errorMessage }, 403);
+        }
+        return c.json({ error: errorMessage || "Login failed" }, 401);
     }
 };
