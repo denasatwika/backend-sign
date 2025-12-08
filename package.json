@@ -11,14 +11,17 @@
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.45.0",
     "hono": "^4.10.7",
+    "jsonwebtoken": "^9.0.3",
     "pg": "^8.16.3",
-    "pino": "^10.1.0"
+    "pino": "^10.1.0",
+    "viem": "^2.41.2"
   },
   "devDependencies": {
     "@eslint/compat": "^2.0.0",
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.1",
     "@types/bun": "latest",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/multer": "^2.0.0",
     "@types/pg": "^8.15.6",
     "@typescript-eslint/eslint-plugin": "^8.48.1",
