@@ -50,7 +50,6 @@ export async function authMiddleware(c: Context<{ Variables: AuthVariables }>, n
         return c.json({ error: `Token validation failed: ${e.message}` }, 401);
     }
     
-    // Penanganan Custom Error
     if (e instanceof ForbiddenError) {
         return c.json({ error: e.message }, 403);
     }

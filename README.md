@@ -17,3 +17,16 @@ git branch -M main
 git push -u origin main
 "
 ```
+Matikan docker
+```sh 
+docker-compose down -v
+```
+
+Bangun ulang image dan jalankan container baru
+```sh 
+docker-compose up -d --build
+```
+migrasi database
+```sh 
+docker exec backend_sign bunx drizzle-kit push
+```

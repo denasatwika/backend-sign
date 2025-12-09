@@ -13,12 +13,18 @@ services:
       - /app/node_modules 
     environment:
       DATABASE_URL: ${DATABASE_URL}
+      NODE_ENV: production 
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
+      REFRESH_TOKEN_SECRET: ${REFRESH_TOKEN_SECRET}
+      REFRESH_TOKEN_EXPIRES_IN: ${REFRESH_TOKEN_EXPIRES_IN}
+      PORT: 3000
     networks:
       - app_network
 
   db:
     image: postgres:16-alpine 
-    container_name: postgres_db
+    container_name: db_sign
     restart: always
     environment:
       POSTGRES_USER: honouser
